@@ -1,0 +1,96 @@
+* {padding: 0; margin: 0;}
+.mg0 {
+  margin:0px !important;
+  padding:0px !important;
+}
+.cs1-tit {
+	font-size: 2em;
+	font-weight: 700;
+	text-align: center;
+	font-family: initial;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border:solid 1px black;
+}
+.cs-tbodytit tr td{
+  vertical-align: middle;
+  border:solid 1px black;
+  text-align: center;
+}
+.cs1-divtittb{
+	padding: 0 !important;
+}
+.cs-tbtit{
+	margin: 0 !important;
+}
+.cs1-pic{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border:solid 1px black;
+}
+.cs1-measuement{
+	line-height: 2em;
+}
+
+.floatRight{
+	float: right;
+}
+
+.floatLeft{
+	float: left;
+}
+
+.borderBuild{
+	/*height: 600px;*/
+	border: 1px solid black;
+	margin: 10px 0 10px 10px;
+	border-radius: 10px;
+}
+.borderHang{
+	height: 650px;
+	border: 1px solid black;
+	margin: 10px 10px 10px 0px;
+	border-radius: 10px;
+}
+.mideTH tr th{
+	vertical-align: middle !important;
+}
+.mideTH tr td{
+	vertical-align: middle !important;
+}
+.mideTHss tr th{
+	vertical-align: middle !important;
+	border-color: red;
+}
+.mideTHss tr td{
+	vertical-align: middle !important;
+	border-color: red;
+}
+.flex{
+	display: flex;
+}
+.title-on-left{
+	color: red;
+	font-weight: bold;
+}
+.title-on-right span{
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+	margin-left: 180px;
+}
+
+.titleHoaDon{
+	padding: 50px 30px 30px 50px;
+}
+.qrCode{
+	width: 240px;
+	height: 240px;
+}
+.imgQrCode{
+	width: 150px;
+	height: 150px;
+	margin-left: 50px;
+}

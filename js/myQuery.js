@@ -1,111 +1,151 @@
-window.addEventListener('DOMContentLoaded', event => {
-
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+function loadMain() {
+    let rbCode = $("#rbCode").val().trim();
+	let model = $("#model").val().trim();
+	let code = $("#code").val().trim();
+	$.post('./view/viewMain.php', 
+		{model:model, code:code, rbCode:rbCode},
+            function(data){
+            $("#show").html(data);
         });
-    }
+}
 
-});
+function loadIm() {
+    let rbCode = $("#rbCode").val().trim();
+  let model = $("#model").val().trim();
+  let code = $("#code").val().trim();
+  $.post('./view/viewIm.php', 
+    {model:model, code:code, rbCode:rbCode},
+            function(data){
+            $("#show").html(data);
+        });
+}
 
-function loadHang() {
-    $.post('./view/showHang.php', 
+function loadHisIm() {
+    let rbCode = $("#rbCode").val().trim();
+  let model = $("#model").val().trim();
+  let code = $("#code").val().trim();
+  $.post('./view/viewHisIm.php', 
+    {model:model, code:code, rbCode:rbCode},
+            function(data){
+            $("#show").html(data);
+        });
+}
+
+function loadHisEx() {
+    let rbCode = $("#rbCode").val().trim();
+  let model = $("#model").val().trim();
+  let code = $("#code").val().trim();
+  $.post('./view/viewHisEx.php', 
+    {model:model, code:code, rbCode:rbCode},
+            function(data){
+            $("#show").html(data);
+        });
+}
+
+function loadDetailMaterial() {
+    // let rbCode = $("#rbCode").val().trim();
+    let rbCode = '';
+  let model = $("#model11111").val().trim();
+  let code = $("#code11111").val().trim();
+  let area = $("#area1111").val().trim();
+  $.post('./view/viewDetailMaterial.php', 
+    {model:model, code:code, rbCode:rbCode, area:area},
+            function(data){
+            $("#show").html(data);
+        });
+}
+
+function loadQR() {
+    // let rbCode = $("#rbCode").val().trim();
+    let rbCode = '';
+  let model = $("#model11111").val().trim();
+  let code = $("#code11111").val().trim();
+  let area = $("#area1111").val().trim();
+  $.post('./view/viewQR.php', 
+    {model:model, code:code, rbCode:rbCode, area:area},
+            function(data){
+            $("#show").html(data);
+        });
+}
+
+function loadListForm() {
+    // let rbCode = $("#rbCode").val().trim();
+    $.post('./view/viewListForm.php', 
+        // {rbCode:rbCode},
+            function(data){
+            $("#show").html(data);
+        });
+}
+
+function loadListFormFinish() {
+    let rbCode = $("#rbCode").val().trim();
+    $.post('./view/viewListFormFinish.php', 
+        {rbCode:rbCode},
+            function(data){
+            $("#show").html(data);
+        });
+}
+
+function loadFormMuonWip() {
+    $.post('./view/creatFormMuonWip.php', 
         function(data){
         $("#show").html(data);
     });
 }
 
-function loadImportHang() {
-    // let dateS = $('#dateS').val()
-    // let dateE = $('#dateE').val()
-    $.post('./view/showImportHang.php', 
+function loadFormTraWip() {
+    $.post('./view/creatFormTraWip.php', 
         function(data){
         $("#show").html(data);
     });
 }
 
-function loadHis() {
-    let dateS = $('#dateS').val()
-    let dateE = $('#dateE').val()
-    $.post('./view/showHis.php',  {dateS:dateS, dateE:dateE},
+function loadFormUnplan() {
+    $.post('./view/creatFormUnplan.php', 
         function(data){
         $("#show").html(data);
     });
 }
 
-function loadCongNo() {
-    $.post('./view/showCongNo.php',
+function loadFormPo() {
+    $.post('./view/viewPo.php', 
         function(data){
         $("#show").html(data);
     });
 }
 
-function loadListSanPham() {
-    $.post('./view/viewListSanPham.php', 
-        function(data){
-        $("#show-hang").html(data);
-    });
-}
-
-function loadThuChi() {
-    let year = $('#year').val()
-    let dateS = year+'-01-01';
-    let dateE = year+'-12-31';
-    $.post('./view/showThuChi.php',  {dateS:dateS, dateE:dateE, year:year},
+function loadHisMuonTra() {
+    $.post('./view/viewHisMuonTra.php', 
         function(data){
         $("#show").html(data);
     });
 }
 
-function viewQrCode() {
-    $.post('./view/viewQrCode.php', 
+function loadUpdateImg() {
+    $.post('./view/updateImg.php', 
+        function(data){
+        $("#show").html(data);
+    });
+}
+
+function loadListPo() {
+    let model = $("#model11111").val().trim();
+    let code = $("#code11111").val().trim();
+    let status = $("#status11").val().trim();
+    let area = $("#area11").val().trim();
+    $.post('./view/viewPo.php', 
+        {model11111:model, code11111:code, status11111:status, area11111:area},
+        function(data){
+        $("#show").html(data);
+    });
+}
+
+function loadCreatePo() {
+    $.post('./view/choosePo.php', 
         function(data){
         $("#modal-content").html(data);
         $('#exampleModal').modal('show');
     });
-}
-
-function changeInfoShop() {
-    $.post('./view/changeInfoShop.php', 
-        function(data){
-        $("#modal-content").html(data);
-        $('#exampleModal').modal('show');
-    });
-}
-
-function loadTime() {
-    let time = new Date()
-    let Y = time.getFullYear()
-    let d = time.getDate()
-    let m = time.getMonth()+1
-    let H = time.getHours()
-    let i = time.getMinutes()
-    let s = time.getSeconds()
-    if(d <10){
-        d = '0'+d;
-    }
-    if(m <10){
-        m = '0'+m;
-    }
-    if(H <10){
-        H = '0'+H;
-    }
-    if(i <10){
-        i = '0'+i;
-    }
-    if(s <10){
-        s = '0'+s;
-    }
-    let html = d+'/'+m+'/'+Y+' '+H+':'+i+'/'+s
-    $('#showTime').html(html)
 }
 
 function removeItemArray(e,arr){
@@ -116,124 +156,73 @@ function removeItemArray(e,arr){
   return arr
 }
 
-function errAlert(text){
+function dbClickEdit(dataDb) {
+    let type = 'add';
+    $.post('view/viewImage.php',  
+        {arrDid:dataDb, type:type},
+        function(data){
+        $("#showImgMaterial").html(data);
+        // $('#exampleModal').modal('show');
+    });
+}
+
+function dbClickEditMain(dataDb) {
+    let type = 'view';
+    $.post('view/viewImage.php',  
+        {arrDid:dataDb, type:type},
+        function(data){
+        $("#modal-content").html(data);
+        $('#exampleModal').modal('show');
+    });
+}
+
+function dbClickView(dataDb) {
+    let type = dataDb[0]['type']
+    let arr = dataDb[0]['stt']
+    if (type == 'muonWip') {
+      window.open("./view/viewFormMuonWip.php?stt="+arr, "_blank", "scrollbars=yes,resizable=yes,width = "+screen.availWidth+",top=20,height="+screen.availWidth+"");
+    }else if(type == 'traWip'){
+      window.open("./view/viewFormTraWip.php?stt="+arr, "_blank", "scrollbars=yes,resizable=yes,width = "+screen.availWidth+",top=20,height="+screen.availWidth+"");
+    }else{
+      window.open("./view/viewFormUnplan.php?stt="+arr, "_blank", "scrollbars=yes,resizable=yes,width = "+screen.availWidth+",top=20,height="+screen.availWidth+"");
+    }
+    
+}
+
+function inputSelect(inputSelect){
+  Swal.fire({
+  title: 'Select Outage Tier',
+  input: 'select',
+  inputOptions: inputSelect,
+  inputPlaceholder: 'required',
+  showCancelButton: true,
+  inputValidator: function (value) {
+    return new Promise(function (resolve, reject) {
+      if (value !== '') {
+        resolve();
+      } else {
+        resolve('You need to select a Tier');
+      }
+    });
+  }
+}).then(function (result) {
+  if (result.isConfirmed) {
     Swal.fire({
-        icon: 'error',
-        title: text,
-        // text: 'Something went wrong!'
-      })
+      icon: 'success',
+      html: 'You selected: ' + result.value
+    });
+  }
+});
 }
 
-function successAlert(res){
-    Swal.fire(
-        res,
-        '',
-        'success'
-    )
-}
-
-// tạo ra để gọi lại liên tục
-
-function Quest(title, buttonText){
+function quest(text){
     return Swal.fire({
-        title: title,
-        // text: text,
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: buttonText,
-        denyButtonText: 'CANCEL',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+      title: 'Are you sure?',
+      text: text,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Confirm it!'
     })
 }
-
-// đúng thì như thế này
-
-// function Quest_binh_thuong(title){
-//     Swal.fire({
-//         title: title,
-//         // text: text,
-//         icon: 'question',
-//         showCancelButton: true,
-//         confirmButtonText: 'CONFIRM',
-//         denyButtonText: 'CANCEL',
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             console.log("confirm")
-//         } else if (result.isDismissed) {
-//             console.log("deny")
-//         }
-//     });
-// }
-
-function plus (idd, price, rate) { 
-    let qty = $('#'+idd+'').text();
-    let qty_up = parseInt(qty)+1
-    let cham = (parseFloat(price)*qty_up).toString().indexOf('.')
-    let total = parseFloat(price)*qty_up
-    if(cham != -1){
-        total = (parseFloat(price)*qty_up).toString().substr(0,cham+3)
-    }
-    let dv_doi = (qty_up/parseFloat(rate)).toString().substr(0,4)
-
-    $('#'+idd+'').html(qty_up)
-    $('#price'+idd+'').html(total)
-    $('#dv_doi'+idd+'').html(dv_doi)
-    
-};
-
-function tru (idd, price, rate) { 
-    let qty = $('#'+idd+'').text();
-    let qty_up = qty
-    if(qty > 1){
-        qty_up = parseInt(qty)-1
-    }
-    let cham = (parseFloat(price)*qty_up).toString().indexOf('.')
-    let total = parseFloat(price)*qty_up
-    if(cham != -1){
-        total = (parseFloat(price)*qty_up).toString().substr(0,cham+3)
-    }
-    let dv_doi = (qty_up/parseFloat(rate)).toString().substr(0,4)
-
-    $('#'+idd+'').html(qty_up)
-    $('#price'+idd+'').html(total)
-    $('#dv_doi'+idd+'').html(dv_doi)
-};
-
-function plus_doi (idd, price, rate) { 
-    let qty = $('#dv_doi'+idd+'').text();
-    let qty_up = parseInt(qty)+1
-    let qty_doi = qty_up*parseFloat(rate)
-    let cham = (qty_doi*parseFloat(price)).toString().indexOf('.')
-    let total = qty_doi*parseFloat(price)
-    if(cham != -1){
-        total = (qty_doi*parseFloat(price)).toString().substr(0,cham+3)
-    }
-
-    $('#'+idd+'').html(qty_doi)
-    $('#price'+idd+'').html(total)
-    $('#dv_doi'+idd+'').html(qty_up)
-};
-
-function tru_doi (idd, price, rate) { 
-    let qty = $('#dv_doi'+idd+'').text();
-    let qty_up = qty
-    if(qty > 1){
-        qty_up = parseInt(qty)-1
-    }
-    let qty_doi = qty_up*parseFloat(rate)
-    let cham = (qty_doi*parseFloat(price)).toString().indexOf('.')
-    let total = qty_doi*parseFloat(price)
-    if(cham != -1){
-        total = (qty_doi*parseFloat(price)).toString().substr(0,cham+3)
-    }
-    
-    if(qty >= 1){
-        // $('#totalSum').html(totalSum)
-        $('#'+idd+'').html(qty_doi)
-        $('#price'+idd+'').html(total)
-        $('#dv_doi'+idd+'').html(qty_up)
-    }
-};
